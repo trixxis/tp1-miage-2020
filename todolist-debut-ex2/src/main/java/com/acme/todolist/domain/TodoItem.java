@@ -52,7 +52,7 @@ public class TodoItem {
 		return "TodoItem [id=" + id + ", time=" + time + ", content=" + content + "]";
 	}
 	
-	private boolean isLate() {
+	boolean isLate() {
 		return Instant.now().isAfter(getTime().plus(1, ChronoUnit.DAYS)); 
 	}
 	
