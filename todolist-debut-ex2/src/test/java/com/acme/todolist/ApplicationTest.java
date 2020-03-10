@@ -6,10 +6,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 /**
- * Lanceur Spring boot
+ * Lanceur Spring boot pour les tests
  * 
- * Note : comme cette classe n'est pas dans com.acme.todolist mais dans un sous package, il faut configurer finalement les 
- * différents composants nécessaires
+ * Ce Lanceur doit se trouver au plus près des tests
+ * pour surcharger le TodolistApplication de src/main/java 
+ * qui chargerait toute l'application
  * @author bflorat
  *
  */

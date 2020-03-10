@@ -1,9 +1,10 @@
 package com.acme.todolist.adapters.rest_api;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito.Then;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -11,9 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.acme.todolist.application.port.in.AddTodoItem;
 import com.acme.todolist.application.port.in.GetTodoItems;
-import com.acme.todolist.domain.TodoItem;
-
-import static org.mockito.BDDMockito.*;
 
 
 
