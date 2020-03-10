@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.acme.todolist.configuration.TodolistApplication;
+
 
 /**
  * Lanceur Spring boot
@@ -17,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.acme.todolist.rest_ui")
-public class TodolistApplication {
+public class ApplicationTest {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TodolistApplication.class, args);

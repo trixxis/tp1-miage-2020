@@ -21,8 +21,16 @@ public class TodoListControllerTest {
 	
 	@Test
 	void testGetTodoItems() throws Exception{
-		mockMvc.perform(get("/tofdfdos").header("Content-Type", "application/json"))
-		.andExpect(status().is1xxInformational());
+		mockMvc.perform(get("/todos").header("Content-Type", "application/json"))
+		.andExpect(status().isOk());
+		
+		//then(mockMvc).shouldHaveZeroInteractions();
+	}
+	
+	@Test
+	void testEndpointInnexistant() throws Exception{
+		mockMvc.perform(get("/existepas").header("Content-Type", "application/json"))
+		.andExpect(status().is4xxClientError());
 		
 		//then(mockMvc).shouldHaveZeroInteractions();
 	}
