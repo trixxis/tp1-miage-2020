@@ -1,11 +1,8 @@
 package com.acme.todolist;
 
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
-import com.acme.todolist.configuration.TodolistApplication;
 
 
 /**
@@ -18,11 +15,6 @@ import com.acme.todolist.configuration.TodolistApplication;
  */
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.acme.todolist.rest_ui")
+@ComponentScan(basePackages = {"com.acme.todolist.adapters.rest_api"})
 public class ApplicationTest {
-
-	public static void main(String[] args) {
-		SpringApplication.run(TodolistApplication.class, args);
-	}
-
 }

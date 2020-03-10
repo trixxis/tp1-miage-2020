@@ -1,5 +1,6 @@
 package com.acme.todolist.adapters.rest_api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,6 +36,7 @@ public class TodoListController {
 	@GetMapping("/todos")
 	public List<TodoItem> getAllTodoItems() {
 		return this.getTodoItemsQuery.getAllTodoItems();
+		
 	}
 	
 	@PostMapping("/todos")
