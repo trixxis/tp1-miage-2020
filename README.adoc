@@ -79,7 +79,9 @@ docker ps => Affiche les conteneurs docker actuellement lancé avec l'ID du cont
 
 * Compléter le code manquant dans la méthode `TodoListController.createTodoItem()`
 
-* IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ? // A FAIRE §§§§§§§§§§§§
+* IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ? 
+Actuellement à l'envoi d'une requete POST, nous obtenons un java.lang.NullPointerException. Cela résulte du fait qu'il n'y a pas d'injection de dépendance.
+La meilleur façon d'injecter la dépendance est de mettre @injection au niveau du constructeur.
 
 * Modifier le code en conséquence.
 
