@@ -2,12 +2,12 @@
 
 NOTE: TP de deux slots de 1h20
 
-## Nom des étudiants de ce binôme 
+## Nom des étudiants de ce binôme
 WARNING: NE PAS OUBLIER DE MENTIONNER LES DEUX NOMS !
 
-#XXX# et #YYY#
+#Hombert# et #Chatelet# et #Foucourt#
 
-Commentaires éventuels des étudiants : #XXXXXX#
+Commentaires éventuels des étudiants : #Suite à l'absence du binome de Camille, celle-ci nous a rejoint#
 
 ## Pré-requis 
 
@@ -48,22 +48,38 @@ _Temps estimé : 1 h_
 * Observer le code du projet `todolist-debut-ex1`
 
 IMPORTANT: [Question]  Le code est-il structuré en couches ? Imaginez un projet d'entreprise constitué de centaines de classes ainsi structuré : que risque-t-il d'arriver ?
+Non car chaque classe contient divers éléments comme la classe TodoItem qui contient des entités JPA et DTO
+SUr un projet d'entreprise a gros volume de classes, il y a de gros impact sur la maintenabilité ainsi que d'éventuel probleme de performance
+
 
 IMPORTANT: [Question]  Que se passe-t-il si l'on renomme une colonne de la base de donnée ?
+Le lien entre la classe TodoItem et la base de données ne se fait plus pour cette colonne. Il faudra renommer l'attribut concerné
 
 IMPORTANT: [Question]  Où se trouve le code métier (voir la règle de gestion RG1) ? cette règle est-elle facilement testable par un test unitaire ? 
+Le code métier se trouve actuellement dans la classe TodoListControler. Non, il faudrait pour cela que le code metier soit dans la classe metier TodoItem
 
 * Lancer une base PostgreSQL en Docker :
 ```bash
 docker run --rm -it -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
+
+
 ```
 IMPORTANT: [Question]  Expliquer cette ligne de commande (y compris les options utilisées)
+	Docker Run (...) postgres => Lance un conteneur docker postgres
+               		     --rm => Suppression automatique du conteneur a la fin de l'execution
+      			      -it => Renvois les messages sur le terminal
+			      -e  => Initialise les variables d'environnement dans le conteneur
+			      POSTGRES_PASSWORD=Password = Initialise le mot de pass du postgres avec "Password"
+			      -p => Configure le port 5432
 
 IMPORTANT: [Question]  Lancer les commandes `docker ps` et `ps -eaf | grep postgres`, à quoi correspondent les lignes affichées ? Que remarquez vous ?
+docker ps => Affiche les conteneurs docker actuellement lancé avec l'ID du conteneur, l'image utilisée, la commande docker utilisée, temps depuis la création, l'uptime, le port de connexion
+
+`ps -eaf | grep postgres=> Liste tous les processus de tous les utilisateurs (root / User /999= docker) utilisant postgres
 
 * Compléter le code manquant dans la méthode `TodoListController.createTodoItem()`
 
-* IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ? 
+* IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ? // A FAIRE §§§§§§§§§§§§
 
 * Modifier le code en conséquence.
 
@@ -102,8 +118,12 @@ Source : http://leanpub.com/get-your-hands-dirty-on-clean-architecture[Tom Hombe
   - la couche entités qui contient les entités (au sens DDD, pas au sens JPA). En général, classes complexes (méthodes riches, relations entre les entités,  pas de simples POJO anémiques)
 
 IMPORTANT: [Question] Rappeler en quelques lignes les grands principes de cette architecture.
+Les grabds orubcuoes de cette architecture sont:
+	-Séparer explicitement Application, Domaine et Infrastructure
+	-Les dépendances vont vers le Domaine
+	-On isole les frontieres par des Adapters In et Out
 
-Complétez ce code avec une fonctionnalité de création de `TodoItem`  persisté en base et appelé depuis un endpoint REST `POST /todos` qui renvoi un code `201` en cas de succès. La fonctionnalité à implémenter est contractualisée par le port d'entrée `AddTodoItem`.
+Complétez ce code avec une fonctionnalité de création de `TodoItem`  persisté en base et appelé depuis un endpoint REST `POST /todos` qui renvoi un code `201` en cas de succès. La fonctionnalité à implémenter est contractualisée par le port d'entrée `AddTodoItem`. ( AddTodoItem s'appelle SetTodoItem) 
 
 # Exercice 3 - Ecriture de tests
 _Temps estimé : 20 mins_

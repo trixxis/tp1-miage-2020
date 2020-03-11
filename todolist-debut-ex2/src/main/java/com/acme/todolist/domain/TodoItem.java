@@ -3,6 +3,9 @@ package com.acme.todolist.domain;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
+import com.acme.todolist.application.port.in.SetTodoItem;
+import com.acme.todolist.application.port.out.InsertTodoItem;
+
 /**
  * Un item à faire, immuable
  * Sert à la fois d'entité JPA et de DTO (entrée/sortie des services Web)
@@ -10,6 +13,7 @@ import java.time.temporal.ChronoUnit;
  * @author bflorat
  *
  */
+
 public class TodoItem {
 	
 	private static final String LATE = "[LATE!] ";
@@ -19,6 +23,8 @@ public class TodoItem {
 	private Instant time;
 	
 	private String content;
+	
+	
 		
 
 	public String getId() {
@@ -43,7 +49,9 @@ public class TodoItem {
 		this.id = id;
 		this.time = time;
 		this.content = content;
+		
 	}
+	
 	
 	
 	
@@ -89,5 +97,7 @@ public class TodoItem {
 			return false;
 		return true;
 	}
+
+	
 	
 }
