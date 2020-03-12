@@ -3,11 +3,10 @@
 NOTE: TP de deux slots de 1h20
 
 ## Nom des étudiants de ce binôme
-WARNING: NE PAS OUBLIER DE MENTIONNER LES DEUX NOMS !
 
-#Hombert# et #Chatelet# et #Foucourt#
+#Hombert#, #Chatelet# et #Foucourt#
 
-Commentaires éventuels des étudiants : #Suite à l'absence du binome de Camille, celle-ci nous a rejoint#
+Commentaires éventuels des étudiants : Suite à l'absence du binome de Camille, celle-ci nous a rejoint#
 
 ## Pré-requis 
 
@@ -48,15 +47,18 @@ _Temps estimé : 1 h_
 * Observer le code du projet `todolist-debut-ex1`
 
 IMPORTANT: [Question]  Le code est-il structuré en couches ? Imaginez un projet d'entreprise constitué de centaines de classes ainsi structuré : que risque-t-il d'arriver ?
-Non car chaque classe contient divers éléments comme la classe TodoItem qui contient des entités JPA et DTO
-SUr un projet d'entreprise a gros volume de classes, il y a de gros impact sur la maintenabilité ainsi que d'éventuel probleme de performance
+
+[Réponse] _Non car chaque classe contient divers éléments comme la classe TodoItem qui contient des entités JPA et DTO
+SUr un projet d'entreprise a gros volume de classes, il y a de gros impact sur la maintenabilité ainsi que d'éventuel probleme de performance_
 
 
 IMPORTANT: [Question]  Que se passe-t-il si l'on renomme une colonne de la base de donnée ?
-Le lien entre la classe TodoItem et la base de données ne se fait plus pour cette colonne. Il faudra renommer l'attribut concerné
+
+[Réponse] _Le lien entre la classe TodoItem et la base de données ne se fait plus pour cette colonne. Il faudra renommer l'attribut concerné._
 
 IMPORTANT: [Question]  Où se trouve le code métier (voir la règle de gestion RG1) ? cette règle est-elle facilement testable par un test unitaire ? 
-Le code métier se trouve actuellement dans la classe TodoListControler. Non, il faudrait pour cela que le code metier soit dans la classe metier TodoItem
+
+[Réponse] _Le code métier se trouve actuellement dans la classe TodoListControler. Non, il faudrait pour cela que le code metier soit dans la classe métier TodoItem._
 
 * Lancer une base PostgreSQL en Docker :
 ```bash
@@ -65,23 +67,27 @@ docker run --rm -it -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
 
 ```
 IMPORTANT: [Question]  Expliquer cette ligne de commande (y compris les options utilisées)
-	Docker Run (...) postgres => Lance un conteneur docker postgres
-               		     --rm => Suppression automatique du conteneur a la fin de l'execution
-      			      -it => Renvois les messages sur le terminal
-			      -e  => Initialise les variables d'environnement dans le conteneur
-			      POSTGRES_PASSWORD=Password = Initialise le mot de pass du postgres avec "Password"
-			      -p => Configure le port 5432
+
+	Docker Run (...) 
+postgres => Lance un conteneur docker postgres
+ --rm => Suppression automatique du conteneur a la fin de l'execution
+-it => Renvois les messages sur le terminal
+-e  => Initialise les variables d'environnement dans le conteneur
+POSTGRES_PASSWORD=Password = Initialise le mot de pass du postgres avec "Password"
+-p => Configure le port 5432
 
 IMPORTANT: [Question]  Lancer les commandes `docker ps` et `ps -eaf | grep postgres`, à quoi correspondent les lignes affichées ? Que remarquez vous ?
-docker ps => Affiche les conteneurs docker actuellement lancé avec l'ID du conteneur, l'image utilisée, la commande docker utilisée, temps depuis la création, l'uptime, le port de connexion
 
-`ps -eaf | grep postgres=> Liste tous les processus de tous les utilisateurs (root / User /999= docker) utilisant postgres
+_docker ps => Affiche les conteneurs docker actuellement lancé avec l'ID du conteneur, l'image utilisée, la commande docker utilisée, temps depuis la création, l'uptime, le port de connexion_
+
+_`ps -eaf | grep postgres=> Liste tous les processus de tous les utilisateurs (root / User /999= docker) utilisant postgres_
 
 * Compléter le code manquant dans la méthode `TodoListController.createTodoItem()`
 
-* IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ? 
-Actuellement à l'envoi d'une requete POST, nous obtenons un java.lang.NullPointerException. Cela résulte du fait qu'il n'y a pas d'injection de dépendance.
-La meilleur façon d'injecter la dépendance est de mettre @injection au niveau du constructeur.
+* IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ?
+
+[Réponse] _Actuellement à l'envoi d'une requete POST, nous obtenons un java.lang.NullPointerException. Cela résulte du fait qu'il n'y a pas d'injection de dépendance._
+_La meilleur façon d'injecter la dépendance est de mettre @injection au niveau du constructeur._
 
 * Modifier le code en conséquence.
 
@@ -120,10 +126,12 @@ Source : http://leanpub.com/get-your-hands-dirty-on-clean-architecture[Tom Hombe
   - la couche entités qui contient les entités (au sens DDD, pas au sens JPA). En général, classes complexes (méthodes riches, relations entre les entités,  pas de simples POJO anémiques)
 
 IMPORTANT: [Question] Rappeler en quelques lignes les grands principes de cette architecture.
-Les grabds orubcuoes de cette architecture sont:
-	-Séparer explicitement Application, Domaine et Infrastructure
-	-Les dépendances vont vers le Domaine
-	-On isole les frontieres par des Adapters In et Out
+
+[Réponse]_Les grands principes de cette architecture sont:_
+
+	- Séparer explicitement Application, Domaine et Infrastructure
+	- Les dépendances vont vers le Domaine
+	- On isole les frontieres par des Adapters In et Out_
 
 Complétez ce code avec une fonctionnalité de création de `TodoItem`  persisté en base et appelé depuis un endpoint REST `POST /todos` qui renvoi un code `201` en cas de succès. La fonctionnalité à implémenter est contractualisée par le port d'entrée `AddTodoItem`. ( AddTodoItem s'appelle SetTodoItem) 
 
@@ -135,8 +143,11 @@ _Temps estimé : 20 mins_
 * Implémentez (en junit) des TU sur la règle de gestion qui consiste à afficher `[LATE!]` dans la description d'un item en retard de plus de 24h.
 
 IMPORTANT: [Question] Quels types de tests devra-t-on écrire pour les adapteurs ? 
-Ce sont des tests d'intégration.
+
+[Réponse] _Ce sont des tests d'intégration._
 
 IMPORTANT: [Question] Que teste-on dans ce cas ? 
+
+[Réponse] _On teste les connexions avec les services externes et API._
 
 * S'il vous reste du temps, écrivez quelques uns de ces types de test.
