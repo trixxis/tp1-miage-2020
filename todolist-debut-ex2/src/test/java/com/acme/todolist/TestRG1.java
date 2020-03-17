@@ -10,13 +10,19 @@ import junit.framework.TestCase;
 
 
 public class TestRG1 extends TestCase {
+
 	private static final String LATE = "[LATE!] ";
 
 @Test
-  public void testRG1() throws Exception {
+  public void testRG1Late() throws Exception {
 	 
-    assertEquals(true, this.createTestItem().finalContent().contains(LATE));
+    assertEquals(true, this.createTestItem().minusSeconds(86400).finalContent().contains(LATE));
     
+  }
+  
+  @Test
+  public void testRG1NotLate() throws Exception {
+    assertEquals(true, ! this.createTestItem().plusSeconds().finalContent(86400).contains(LATE));
   }
   
   public TodoItem createTestItem(){
